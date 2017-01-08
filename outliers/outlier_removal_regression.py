@@ -4,6 +4,7 @@ import random
 import numpy
 import matplotlib.pyplot as plt
 import pickle
+import numpy as np
 
 from outlier_cleaner import outlierCleaner
 
@@ -26,9 +27,14 @@ ages_train, ages_test, net_worths_train, net_worths_test = train_test_split(ages
 ### fill in a regression here!  Name the regression object reg so that
 ### the plotting code below works, and you can see what your regression looks like
 
+from sklearn import linear_model
+from sklearn.metrics import accuracy_score
+reg=linear_model.LinearRegression()
+reg.fit(ages_train, net_worths_train)
+pred=reg.predict(ages_test)
+print reg.coef_
 
-
-
+print accuracy_score(pred, net_worths_test)
 
 
 
