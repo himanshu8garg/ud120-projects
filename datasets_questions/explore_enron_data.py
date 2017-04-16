@@ -21,14 +21,18 @@ enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r")
 print len(enron_data)
 i =0
 j=0
+minimum=0
+maximum=0
 for key,value in enron_data.items():
-    #print (key, [value for item in value])
-    print enron_data[key]["poi"]
+    print (key, [value for item in value])
+    #print enron_data[key]["poi"]
     #print enron_data[key]["email_address"]
-    if (enron_data[key]["poi"]== True):
-        i+=1
-    if (enron_data[key]["total_payments"]== "NaN"):
+    minimum=enron_data[key]["exercised_stock_options"]
+    if (minimum>enron_data[key]["exercised_stock_options"]):
+        minimum=enron_data[key]["exercised_stock_options"]
+    if (enron_data[key]["total_payments"]== "26704229"):
         j+=1
+	print key 
 #print len(enron_data)-i
 print i
 print j
@@ -43,3 +47,30 @@ print j
 #print enron_data["SKILLING JEFFREY K"]["total_payments"]
 #print enron_data["LAY KENNETH L"]["total_payments"]
 #print enron_data["FASTOW ANDREW S"]["total_payments"]
+
+stocks=[]
+for key, value in enron_data.items():
+    if (value["exercised_stock_options"]!="NaN"):
+        stocks.append(value["exercised_stock_options"])
+print stocks
+print min(stocks)
+print max(stocks)
+stocks=sorted(stocks)
+print stocks[0]
+print stocks[(len(stocks)-1)]
+
+salary=[]
+for key, value in enron_data.items():
+    if (value["salary"]!="NaN"):
+        salary.append(value["salary"])
+print salary
+print min(salary)
+print max(salary)
+salary=sorted(salary)
+print salary[0]
+print salary[(len(salary)-1)]
+
+
+
+
+

@@ -4,7 +4,7 @@ import random
 import numpy
 import matplotlib.pyplot as plt
 import pickle
-import numpy as np
+import math
 
 from outlier_cleaner import outlierCleaner
 
@@ -34,7 +34,7 @@ reg.fit(ages_train, net_worths_train)
 pred=reg.predict(ages_test)
 print reg.coef_
 
-print accuracy_score(pred, net_worths_test)
+print reg.score(ages_test, net_worths_test)
 
 
 
@@ -59,7 +59,7 @@ except NameError:
     print "your regression object doesn't exist, or isn't name reg"
     print "can't make predictions to use in identifying outliers"
 
-
+	
 
 
 
@@ -75,6 +75,9 @@ if len(cleaned_data) > 0:
     try:
         reg.fit(ages, net_worths)
         plt.plot(ages, reg.predict(ages), color="blue")
+        print reg.coef_
+
+	print reg.score(ages_test, net_worths_test)
     except NameError:
         print "you don't seem to have regression imported/created,"
         print "   or else your regression object isn't named reg"
